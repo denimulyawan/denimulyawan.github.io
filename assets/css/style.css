@@ -507,7 +507,7 @@ section .container {
 }
 
 .interests .icon-box:hover {
-  background: #042b56eb;
+  background: #fe030300;
 }
 
 /*--------------------------------------------------------------
@@ -659,7 +659,7 @@ section .container {
 --------------------------------------------------------------*/
 .services .icon-box {
   text-align: center;
-  background: #09203a;
+  background: #ffffff00;
   padding: 40px 40px;
   transition: all ease-in-out 0.3s;
   margin: 10px
@@ -714,7 +714,7 @@ section .container {
 }
 
 .services .icon-box:hover {
-  background: #042e5f;
+  background: #ffffff3f;
   border-color: #1c7d32;
 }
 
@@ -1099,4 +1099,10 @@ section .container {
     right: 0;
     transform: translateX(-50%);
   }
+}
+
+.form-contact {
+  display: flex;
+  flex-direction: column;
+  max-width: 180px;
 }
