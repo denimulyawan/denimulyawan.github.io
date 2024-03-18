@@ -782,6 +782,9 @@
           <div class="">
             <h2>Contact Me</h2>
           </div>
+          <div id="alert" class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+            <strong>Thank you!</strong> I have received your message.
+          </div>
           <form id="form-contact">
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Name</label>
@@ -796,8 +799,12 @@
               <textarea class="form-control" id="message-input" rows="3"></textarea>
             </div>
             <div class="mb-3">
-              <input type="submit" class="btn btn-primary" style="background-color: white; color: black;"
+              <input type="submit" class="btn btn-primary btn-kirim" style="background-color: white; color: black;"
                 value="submit">
+              <button class="btn btn-primary btn-loading d-none"  style="background-color: white; color: black;" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
             </div>
           </form>
         </div>
@@ -832,7 +839,7 @@
 
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
-    
+
   <script>
     $("#form-contact").on("submit", function (event) {
       event.preventDefault();
@@ -843,6 +850,13 @@
         "message": $("#message-input").val()
       };
 
+      var btnKirim = document.querySelector('.btn-kirim');
+      var btnLoading = document.querySelector('.btn-loading');
+      var myAlert = document.querySelector('.my-alert');
+
+      btnLoading.classList.toggle('d-none');
+      btnKirim.classList.toggle('d-none');
+
       $.ajax({
         type: "POST",
         url: "https://api-bot-tele.vercel.app/message",
@@ -851,6 +865,23 @@
         success: function (response) {
           // Handle the response here (e.g., display a success message)
           console.log("Message sent successfully:", response);
+
+          $("#name-input").val("")
+          $("#email-input").val("")
+          $("#message-input").val("")
+
+          // tampilkan tombol kirim, hilangkang tombol loading
+          btnLoading.classList.toggle('d-none');
+          btnKirim.classList.toggle('d-none');
+          //tampilkan alert
+          myAlert.classList.toggle('d-none');
+          setTimeout(function () {
+            myAlert.classList.toggle('d-none');
+
+          }, 5000)
+          //reset form
+          form.reset();
+          console.log('Success!', response);
         },
         error: function (xhr, status, error) {
           // Handle errors (e.g., display an error message)
