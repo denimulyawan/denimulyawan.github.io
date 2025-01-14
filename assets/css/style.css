@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(0, 0, 0);
   color: #fff;
   line-height: 1;
   margin-right: 8px;
@@ -282,7 +282,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   top: 0;
   right: 0;
-  background: #03001a;
+  background: #000000;
 }
 
 #header.header-top .social-links, #header.header-top h2 {
