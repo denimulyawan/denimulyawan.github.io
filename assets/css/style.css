@@ -24,7 +24,7 @@ body {
 body::before {
   content: "";
   position: fixed;
-  background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 0, 77), rgb(17, 0, 172));
+  background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(0, 0, 7), rgba(0, 0, 0, 0.712));
   background-size: cover;
   left: 0;
   right: 0;
