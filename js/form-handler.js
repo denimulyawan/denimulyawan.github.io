@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const response = await fetch('/api/telegram', {
         method: 'POST',
         headers: {
-          'Content-Type': application/json',
+          'Content-Type': 'application/json',   // ✅ SUDAH DIPERBAIKI
         },
         body: JSON.stringify(formData)
       });
