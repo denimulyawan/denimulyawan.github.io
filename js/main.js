@@ -1,10 +1,19 @@
-// Main JavaScript for Portfolio Website
+// ==================== MAIN JAVASCRIPT FOR PORTFOLIO WEBSITE ====================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Navigation Toggle
+    // ==================== MOBILE NAVIGATION TOGGLE ====================
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     
+    // Function to close mobile menu
+    function closeMobileMenu() {
+        if (navToggle && navMenu) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    }
+    
+    // Toggle menu when clicking hamburger
     if (navToggle) {
         navToggle.addEventListener('click', function() {
             navToggle.classList.toggle('active');
@@ -16,8 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
+            closeMobileMenu();
             
             // Update active link
             navLinks.forEach(item => item.classList.remove('active'));
@@ -25,7 +33,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Update active link on scroll
+    // [FIX] Close mobile menu when scrolling
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (navMenu && navMenu.classList.contains('active')) {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                closeMobileMenu();
+            }, 100);
+        }
+    });
+    
+    // [FIX] Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!navMenu || !navToggle) return;
+        
+        const isClickInsideMenu = navMenu.contains(event.target);
+        const isClickOnToggle = navToggle.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnToggle && navMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // [FIX] Close mobile menu when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // ==================== UPDATE ACTIVE LINK ON SCROLL ====================
     window.addEventListener('scroll', function() {
         const sections = document.querySelectorAll('section');
         const scrollPos = window.scrollY + 100;
@@ -46,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Back to top button
+    // ==================== BACK TO TOP BUTTON ====================
     const backToTop = document.getElementById('backToTop');
     
     window.addEventListener('scroll', function() {
@@ -57,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Animate elements on scroll
+    // ==================== ANIMATE ELEMENTS ON SCROLL ====================
     const animateOnScroll = function() {
         const elements = document.querySelectorAll('.animate-on-scroll');
         
@@ -74,30 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Run once on load
     
-    // Form submission
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real implementation, you would send this data to a server
-            // For now, we'll just show a success message
-            formMessage.textContent = "Thank you for your message! I'll get back to you soon.";
-            formMessage.classList.remove('error');
-            formMessage.classList.add('success');
-            formMessage.style.display = 'block';
-            
-            // Reset form
-            setTimeout(() => {
-                contactForm.reset();
-                formMessage.style.display = 'none';
-            }, 5000);
-        });
-    }
-    
-    // Newsletter form
+    // ==================== NEWSLETTER FORM ====================
     const newsletterForm = document.querySelector('.newsletter-form');
     
     if (newsletterForm) {
@@ -116,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Smooth scrolling for anchor links
+    // ==================== SMOOTH SCROLLING FOR ANCHOR LINKS ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#') return;
@@ -126,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                closeMobileMenu(); // Close menu if open before scrolling
                 window.scrollTo({
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
@@ -134,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add hover effect to certification items
+    // ==================== HOVER EFFECT FOR CERTIFICATION ITEMS ====================
     const certItems = document.querySelectorAll('.certification-item');
     certItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
@@ -146,16 +162,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Initialize animations for hero elements
+    // ==================== INITIALIZE ANIMATIONS FOR HERO ELEMENTS ====================
     setTimeout(() => {
         const heroElements = document.querySelectorAll('.hero-text h1, .hero-text h5, .hero-roles, .hero-description, .hero-buttons');
         heroElements.forEach((el, index) => {
             el.style.animationDelay = `${index * 0.2}s`;
         });
     }, 100);
+    
+    // ==================== TYPING ANIMATION ====================
+    initTypingAnimation();
+    
+    // ==================== ANIMATE EXPERIENCE ITEMS ====================
+    function animateExperienceItems() {
+        const experienceItems = document.querySelectorAll('.animate-list-item');
+        
+        experienceItems.forEach((item, index) => {
+            const itemPosition = item.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (itemPosition < screenPosition) {
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.style.animationPlayState = 'running';
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', animateExperienceItems);
+    animateExperienceItems(); // Run once on load
+    
+    // ==================== HOVER EFFECTS FOR TECH TAGS ====================
+    const techTags = document.querySelectorAll('.tech-tag');
+    techTags.forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+        
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // ==================== TELEGRAM FORM HANDLER ====================
+    handleContactForm();
 });
 
-// Typing animation for hero roles
+// ==================== TYPING ANIMATION FOR HERO ROLES ====================
 function initTypingAnimation() {
     const roleElement = document.getElementById('typing-role');
     const indicators = document.querySelectorAll('.indicator');
@@ -215,52 +267,23 @@ function initTypingAnimation() {
     });
 }
 
-// Animate experience items on scroll
-function animateExperienceItems() {
-    const experienceItems = document.querySelectorAll('.animate-list-item');
-    
-    experienceItems.forEach((item, index) => {
-        const itemPosition = item.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if (itemPosition < screenPosition) {
-            item.style.animationDelay = `${index * 0.1}s`;
-            item.style.animationPlayState = 'running';
-        }
-    });
-}
-
-// Initialize animations
-document.addEventListener('DOMContentLoaded', function() {
-    // Existing code...
-    
-    // Add these new function calls
-    initTypingAnimation();
-    
-    // Animate experience items on scroll
-    window.addEventListener('scroll', animateExperienceItems);
-    animateExperienceItems(); // Run once on load
-    
-    // Add hover effects for tech tags
-    const techTags = document.querySelectorAll('.tech-tag');
-    techTags.forEach(tag => {
-        tag.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px) scale(1.05)';
-        });
-        
-        tag.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-});
-
-
 // ==================== TELEGRAM FORM HANDLER ====================
 function handleContactForm() {
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
     
     if (!contactForm) return;
+    
+    // Helper function to show messages
+    function showFormMessage(text, type) {
+        if (!formMessage) return;
+        formMessage.textContent = text;
+        formMessage.className = `form-message ${type}`;
+        formMessage.style.display = 'block';
+        
+        // Scroll to message
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
     
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -276,14 +299,14 @@ function handleContactForm() {
         
         // Validation
         if (!data.name || !data.email || !data.subject || !data.message) {
-            showFormMessage('Please fill in all fields', 'error');
+            showFormMessage('❌ Please fill in all fields', 'error');
             return;
         }
         
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
-            showFormMessage('Please enter a valid email address', 'error');
+            showFormMessage('❌ Please enter a valid email address', 'error');
             return;
         }
         
@@ -310,9 +333,16 @@ function handleContactForm() {
                 showFormMessage('✅ Thank you! Your message has been sent successfully. I will contact you soon.', 'success');
                 contactForm.reset();
                 
+                // Reset floating labels
+                const allInputs = contactForm.querySelectorAll('input, textarea');
+                allInputs.forEach(input => {
+                    const label = input.previousElementSibling;
+                    if (label) label.classList.remove('active');
+                });
+                
                 // Auto-hide success message after 5 seconds
                 setTimeout(() => {
-                    if (formMessage.style.display !== 'none') {
+                    if (formMessage && formMessage.style.display !== 'none') {
                         formMessage.style.display = 'none';
                     }
                 }, 5000);
@@ -333,22 +363,4 @@ function handleContactForm() {
             submitBtn.disabled = false;
         }
     });
-    
-    // Helper function to show messages
-    function showFormMessage(text, type) {
-        formMessage.textContent = text;
-        formMessage.className = `form-message ${type}`;
-        formMessage.style.display = 'block';
-        
-        // Scroll to message
-        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
 }
-
-// ==================== INITIALIZE ====================
-document.addEventListener('DOMContentLoaded', function() {
-    // ... kode existing Anda ...
-    
-    // Panggil fungsi form handler
-    handleContactForm();
-});
