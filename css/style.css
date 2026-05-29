@@ -44,7 +44,12 @@ section {
     padding: 100px 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1rem;
@@ -536,12 +541,22 @@ ul {
     color: var(--primary-color);
 }
 
+.company-logo.ipctpk {
+    background-image: url('../assets/images/ipctpk-logo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    /* fallback jika gambar tidak ada */
+}
+
 .company-logo.pelindo {
     background-image: url('../assets/images/pelindo-logo.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: white; /* fallback jika gambar tidak ada */
+    background-color: white;
+    /* fallback jika gambar tidak ada */
 }
 
 .company-logo.lintasarta {
@@ -800,19 +815,22 @@ ul {
 /* Specific Brand Logos */
 .certification-logo.oracle-multicloud-logo {
     background-image: url('../assets/images/oracle-logo.png');
-    background-color: #ffffff; /* Cisco Blue */
+    background-color: #ffffff;
+    /* Cisco Blue */
     background-size: 40%;
 }
 
 .certification-logo.oracle-logo {
     background-image: url('../assets/images/oracle-logo.png');
-    background-color: #ffffff; /* AWS Orange */
+    background-color: #ffffff;
+    /* AWS Orange */
     background-size: 40%;
 }
 
 .certification-logo.cisco-logo {
     background-image: url('../assets/images/cisco-logo.png');
-    background-color: #ffffff; /* CompTIA Blue */
+    background-color: #ffffff;
+    /* CompTIA Blue */
     background-size: 45%;
 }
 
@@ -916,34 +934,34 @@ ul {
     .certifications-section {
         padding: 80px 0;
     }
-    
+
     .certifications-grid {
         grid-template-columns: 1fr;
         max-width: 500px;
         margin: 0 auto;
         margin-top: 40px;
     }
-    
+
     .certification-card {
         max-width: 100%;
     }
-    
+
     .certification-logo {
         height: 100px;
     }
-    
+
     .certification-logo.ccna-logo {
         background-size: 45%;
     }
-    
+
     .certification-logo.aws-logo {
         background-size: 40%;
     }
-    
+
     .certification-logo.comptia-logo {
         background-size: 50%;
     }
-    
+
     .certification-logo.vmware-logo {
         background-size: 45%;
     }
@@ -953,20 +971,21 @@ ul {
     .certifications-section {
         padding: 60px 0;
     }
-    
+
     .certification-content {
         padding: 20px;
     }
-    
+
     .certification-title {
         font-size: 1.2rem;
     }
-    
+
     .certification-link {
         padding: 10px 16px;
         font-size: 0.9rem;
     }
 }
+
 /* Contact Section */
 .contact-content {
     display: flex;
@@ -1086,17 +1105,17 @@ ul {
     border-bottom-color: transparent;
 }
 
-.form-group input:focus ~ label,
-.form-group textarea:focus ~ label,
-.form-group input:valid ~ label,
-.form-group textarea:valid ~ label {
+.form-group input:focus~label,
+.form-group textarea:focus~label,
+.form-group input:valid~label,
+.form-group textarea:valid~label {
     top: -10px;
     font-size: 0.9rem;
     color: var(--primary-color);
 }
 
-.form-group input:focus ~ .underline,
-.form-group textarea:focus ~ .underline {
+.form-group input:focus~.underline,
+.form-group textarea:focus~.underline {
     width: 100%;
 }
 
@@ -1258,21 +1277,31 @@ ul {
 
 /* Animations */
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-20px);
     }
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0) translateX(-50%);
     }
+
     40% {
         transform: translateY(-10px) translateX(-50%);
     }
+
     60% {
         transform: translateY(-5px) translateX(-50%);
     }
@@ -1284,31 +1313,31 @@ ul {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .hero-roles {
         justify-content: center;
     }
-    
+
     .hero-buttons {
         justify-content: center;
     }
-    
+
     .about-content {
         flex-direction: column;
     }
-    
+
     .contact-content {
         flex-direction: column;
     }
-    
+
     .timeline::before {
         left: 30px;
     }
-    
+
     .timeline-item {
         padding-left: 70px;
     }
-    
+
     .timeline-date {
         left: 0;
         top: -10px;
@@ -1331,41 +1360,41 @@ ul {
         transition: var(--transition);
         z-index: 999;
     }
-    
+
     .nav-menu.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
     }
-    
+
     .nav-toggle {
         display: flex;
     }
-    
+
     .nav-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(8px, 8px);
     }
-    
+
     .nav-toggle.active span:nth-child(2) {
         opacity: 0;
     }
-    
+
     .nav-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px);
     }
-    
+
     .hero-title {
         font-size: 2.8rem;
     }
-    
+
     .section-title {
         font-size: 2rem;
     }
-    
+
     .education-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .education-item {
         flex-direction: column;
         text-align: center;
@@ -1376,17 +1405,17 @@ ul {
     .hero-title {
         font-size: 2.3rem;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         width: 100%;
     }
-    
+
     .hero-buttons .btn {
         width: 100%;
         justify-content: center;
     }
-    
+
     .skills-grid,
     .certifications-grid {
         grid-template-columns: 1fr;
@@ -1503,22 +1532,52 @@ ul {
 }
 
 /* Animation for list items with delay */
-.animate-list-item:nth-child(1) { animation-delay: 0.1s; }
-.animate-list-item:nth-child(2) { animation-delay: 0.2s; }
-.animate-list-item:nth-child(3) { animation-delay: 0.3s; }
-.animate-list-item:nth-child(4) { animation-delay: 0.4s; }
-.animate-list-item:nth-child(5) { animation-delay: 0.5s; }
-.animate-list-item:nth-child(6) { animation-delay: 0.6s; }
-.animate-list-item:nth-child(7) { animation-delay: 0.7s; }
-.animate-list-item:nth-child(8) { animation-delay: 0.8s; }
-.animate-list-item:nth-child(9) { animation-delay: 0.9s; }
-.animate-list-item:nth-child(10) { animation-delay: 1.0s; }
+.animate-list-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.animate-list-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.animate-list-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.animate-list-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.animate-list-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.animate-list-item:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.animate-list-item:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.animate-list-item:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.animate-list-item:nth-child(9) {
+    animation-delay: 0.9s;
+}
+
+.animate-list-item:nth-child(10) {
+    animation-delay: 1.0s;
+}
 
 @keyframes slideInRight {
     from {
         opacity: 0;
         transform: translateX(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -1526,13 +1585,25 @@ ul {
 }
 
 @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
 }
 
 @keyframes blink {
-    0%, 100% { border-color: transparent }
-    50% { border-color: var(--primary-color) }
+
+    0%,
+    100% {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: var(--primary-color)
+    }
 }
 
 /* Typing cursor effect */
@@ -1549,9 +1620,11 @@ ul {
     0% {
         box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
     }
+
     50% {
         box-shadow: 0 5px 25px rgba(37, 99, 235, 0.5);
     }
+
     100% {
         box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
     }
@@ -1564,11 +1637,11 @@ ul {
         font-size: 1rem;
         padding: 10px 20px;
     }
-    
+
     .animate-list-item {
         padding: 12px;
     }
-    
+
     .tech-tags {
         padding-left: 25px;
     }
@@ -1579,7 +1652,7 @@ ul {
         min-width: 200px;
         font-size: 0.9rem;
     }
-    
+
     .tech-tag {
         font-size: 0.8rem;
         padding: 4px 10px;
@@ -1617,6 +1690,7 @@ ul {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
